@@ -1,13 +1,79 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-interface Props extends HTMLAttributes<'nav'> {}
+import { Icon } from 'astro-icon/components';
 
-const { ...props } = Astro.props;
+import { links } from '@/data/links';
+
+interface Props extends HTMLAttributes<'nav'> {
+  maxWidth: string;
+  paddingInline: string;
+  backgroundColor: string;
+  foregroundColor: string;
+}
+
+const { maxWidth, paddingInline, backgroundColor, foregroundColor, ...props } =
+  Astro.props;
 ---
 
-<div>
-  <nav {...props}></nav>
+<div class="container">
+  <nav {...props}>
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href}>
+              <Icon name={link.iconName} aria-hidden />
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </div>
 
-<style></style>
+<style
+  define:vars={{
+    'max-width': maxWidth,
+    'padding-inline': paddingInline,
+    'background-color': backgroundColor,
+    'foreground-color': foregroundColor,
+  }}
+>
+  .container {
+    padding-inline: var(--padding-inline);
+    font-size: 18px;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+  }
+
+  nav {
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+
+  ul {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li:last-child {
+    margin-left: auto;
+  }
+
+  a {
+    display: inline-flex;
+    column-gap: 0.5em;
+    align-items: center;
+    padding-block: 0.8em;
+    padding-inline: 1em;
+    color: currentcolor;
+    text-decoration: none;
+  }
+
+  svg {
+    flex: none;
+  }
+</style>
