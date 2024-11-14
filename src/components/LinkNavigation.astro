@@ -42,10 +42,15 @@ const { maxWidth, paddingInline, backgroundColor, foregroundColor, ...props } =
   }}
 >
   .container {
+    overflow-x: auto;
     padding-inline: var(--padding-inline);
-    font-size: 18px;
+    font-size: 16px;
     color: var(--foreground-color);
     background-color: var(--background-color);
+
+    @media (width >= 1024px) {
+      font-size: 18px;
+    }
   }
 
   nav {
@@ -67,13 +72,15 @@ const { maxWidth, paddingInline, backgroundColor, foregroundColor, ...props } =
     display: inline-flex;
     column-gap: 0.5em;
     align-items: center;
-    padding-block: 0.8em;
-    padding-inline: 1em;
+    padding: 1em;
     color: currentcolor;
     text-decoration: none;
+    text-wrap: nowrap;
   }
 
   svg {
     flex: none;
+    width: 1.2em;
+    height: 1.2em;
   }
 </style>
