@@ -26,6 +26,11 @@ export const links: Link[] = [
     iconName: 'music',
   },
   {
+    href: 'https://bsky.app/profile/nharox.com',
+    name: 'Bluesky',
+    iconName: 'bluesky',
+  },
+  {
     href: 'https://mastodon.social/@nharox',
     name: 'Mastodon',
     iconName: 'mastodon',
