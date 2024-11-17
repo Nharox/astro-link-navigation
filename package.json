@@ -17,7 +17,7 @@
     "stylelint": "stylelint --fix \"src/**/*.{astro,css}\""
   },
   "dependencies": {
-    "astro": "^4.16.10",
+    "astro": "^4.16.13",
     "astro-icon": "^1.1.2"
   },
   "devDependencies": {
