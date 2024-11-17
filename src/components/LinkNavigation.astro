@@ -67,7 +67,6 @@ const {
 >
   .container {
     overflow-x: auto;
-    padding-inline: var(--padding-inline);
     font-size: 16px;
     color: var(--foreground-color);
     background-color: var(--background-color);
@@ -90,7 +89,7 @@ const {
   }
 
   nav {
-    max-width: var(--max-width);
+    max-width: calc(var(--max-width) + var(--padding-inline) * 2);
     margin-inline: auto;
   }
 
@@ -101,8 +100,18 @@ const {
     list-style-type: none;
   }
 
-  li:nth-last-child(2) {
-    margin-left: auto;
+  li {
+    &:first-child {
+      padding-left: var(--padding-inline);
+    }
+
+    &:nth-last-child(2) {
+      margin-left: auto;
+    }
+
+    &:last-child {
+      padding-right: var(--padding-inline);
+    }
   }
 
   a {
