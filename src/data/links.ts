@@ -12,7 +12,7 @@ export const links: Link[] = [
   {
     key: 'website',
     href: 'https://nharox.com/',
-    name: 'Personal Website',
+    name: 'Website',
     iconName: 'code',
   },
   {

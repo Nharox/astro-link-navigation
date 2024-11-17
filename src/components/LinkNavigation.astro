@@ -6,10 +6,10 @@ import { links } from '../data/links';
 import Icon from './Icon.astro';
 
 interface Props extends HTMLAttributes<'nav'> {
-  maxWidth: string;
-  paddingInline: string;
-  backgroundColor: string;
-  foregroundColor: string;
+  maxWidth?: string;
+  paddingInline?: string;
+  backgroundColor?: string;
+  foregroundColor?: string;
   hoverColor: string;
   activeLink: LinkKey;
   hideIcons?: boolean;
@@ -65,7 +65,8 @@ const {
   }}
 >
   .container {
-    overflow-x: auto;
+    padding-block: 1.5em;
+    padding-inline: var(--padding-inline);
     font-size: 16px;
     color: var(--foreground-color);
     background-color: var(--background-color);
@@ -88,38 +89,32 @@ const {
   }
 
   nav {
-    max-width: calc(var(--max-width) + var(--padding-inline) * 2);
+    max-width: var(--max-width);
     margin-inline: auto;
   }
 
   ul {
-    display: flex;
-    column-gap: 1.5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+    gap: 1.5em;
     padding: 0;
+    line-height: 1;
     list-style-type: none;
 
     @media (width >= 768px) {
+      display: flex;
       column-gap: 2em;
     }
   }
 
-  li {
-    &:first-child {
-      padding-left: var(--padding-inline);
-    }
-
-    &:nth-last-child(2) {
+  li:nth-last-child(2) {
+    @media (width >= 768px) {
       margin-left: auto;
-    }
-
-    &:last-child {
-      padding-right: var(--padding-inline);
     }
   }
 
   a {
     display: inline-block;
-    padding-block: 1em;
     color: currentcolor;
     text-decoration: none;
     text-wrap: nowrap;
