@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { LinkKey } from '@/models/link-key';
 
 import { Icon } from 'astro-icon/components';
 
@@ -11,6 +12,7 @@ interface Props extends HTMLAttributes<'nav'> {
   backgroundColor: string;
   foregroundColor: string;
   hoverColor: string;
+  activeLink: LinkKey;
   hideIcons?: boolean;
 }
 
@@ -20,6 +22,7 @@ const {
   backgroundColor,
   foregroundColor,
   hoverColor,
+  activeLink,
   hideIcons,
   ...props
 } = Astro.props;
@@ -29,14 +32,25 @@ const {
   <nav {...props}>
     <ul>
       {
-        links.map((link) => (
-          <li>
-            <a href={link.href} class:list={[!hideIcons && 'icon-link']}>
-              {!hideIcons && <Icon name={link.iconName} aria-hidden="true" />}
-              {link.name}
-            </a>
-          </li>
-        ))
+        links.map((link) => {
+          const isActive = link.key === activeLink;
+
+          return (
+            <li>
+              <a
+                href={link.href}
+                aria-current={isActive ? 'page' : undefined}
+                class:list={[
+                  !hideIcons && 'icon-link',
+                  isActive && 'active-link',
+                ]}
+              >
+                {!hideIcons && <Icon name={link.iconName} aria-hidden="true" />}
+                {link.name}
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
   </nav>
@@ -67,6 +81,12 @@ const {
     display: inline-flex;
     column-gap: 0.5em;
     align-items: center;
+  }
+
+  .active-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
   }
 
   nav {
