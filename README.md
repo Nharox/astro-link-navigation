@@ -13,3 +13,20 @@ Navigation with links to my various sites/profiles. Currently used on:
 ```bash
 npm install --save @nharox/astro-link-navigation
 ```
+
+2. Import the component and set the required props
+
+```astro
+---
+import { LinkNavigation } from '@nharox/astro-link-navigation';
+---
+
+<LinkNavigation
+  maxWidth="1024px"
+  paddingInline="20px"
+  backgroundColor="black"
+  foregroundColor="white"
+  hoverColor="chartreuse"
+  activeLink="website"
+/>
+```
