@@ -23,12 +23,11 @@ const {
   hoverColor,
   activeLink,
   hideIcons,
-  ...props
 } = Astro.props;
 ---
 
 <div class="container">
-  <nav {...props}>
+  <nav aria-label="External links">
     <ul>
       {
         links.map((link) => {
