@@ -21,15 +21,13 @@
     "publish": "npm publish"
   },
   "dependencies": {
-    "astro": "^4.16.13",
-    "astro-icon": "^1.1.2"
+    "astro": "^4.0.0"
   },
   "devDependencies": {
     "@nharox/astro-prettier-config": "^1.8.0",
     "@nharox/astro-stylelint-config": "^1.2.0"
   },
   "peerDependencies": {
-    "astro": "^4.0.0",
-    "astro-icon": "^1.1.0"
+    "astro": "^4.0.0"
   }
 }

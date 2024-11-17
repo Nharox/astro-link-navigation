@@ -1,10 +1,9 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import type { LinkKey } from '@/models/link-key';
+import type { LinkKey } from '../models/link-key';
 
-import { Icon } from 'astro-icon/components';
-
-import { links } from '@/data/links';
+import { links } from '../data/links';
+import Icon from './Icon.astro';
 
 interface Props extends HTMLAttributes<'nav'> {
   maxWidth: string;
@@ -45,7 +44,7 @@ const {
                   isActive && 'active-link',
                 ]}
               >
-                {!hideIcons && <Icon name={link.iconName} aria-hidden="true" />}
+                {!hideIcons && <Icon name={link.iconName} />}
                 {link.name}
               </a>
             </li>
@@ -128,11 +127,11 @@ const {
     &:hover {
       color: var(--hover-color);
     }
-  }
 
-  svg {
-    flex: none;
-    width: 1.2em;
-    height: 1.2em;
+    svg {
+      flex: none;
+      width: 1.2em;
+      height: 1.2em;
+    }
   }
 </style>

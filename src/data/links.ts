@@ -1,10 +1,11 @@
-import type { LinkKey } from '@/models/link-key';
+import type { IconName } from '../models/icon-name';
+import type { LinkKey } from '../models/link-key';
 
 interface Link {
   key?: LinkKey;
   href: string;
   name: string;
-  iconName: string;
+  iconName: IconName;
 }
 
 export const links: Link[] = [
