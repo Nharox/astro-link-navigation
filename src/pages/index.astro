@@ -4,12 +4,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <LinkNavigation
-    maxWidth="1024px"
-    paddingInline="20px"
-    backgroundColor="black"
-    foregroundColor="white"
-    hoverColor="chartreuse"
-    activeLink="website"
-  />
+  <footer>
+    <LinkNavigation hoverColor="chartreuse" activeLink="website" />
+  </footer>
 </BaseLayout>
+
+<style>
+  footer {
+    padding-inline: 20px;
+    color: white;
+    background-color: black;
+  }
+</style>

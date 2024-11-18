@@ -21,12 +21,5 @@ npm install --save @nharox/astro-link-navigation
 import { LinkNavigation } from '@nharox/astro-link-navigation';
 ---
 
-<LinkNavigation
-  maxWidth="1024px"
-  paddingInline="20px"
-  backgroundColor="black"
-  foregroundColor="white"
-  hoverColor="chartreuse"
-  activeLink="website"
-/>
+<LinkNavigation hoverColor="blue" activeLink="website" />
 ```

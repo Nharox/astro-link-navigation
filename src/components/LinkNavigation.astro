@@ -6,99 +6,54 @@ import { links } from '../data/links';
 import Icon from './Icon.astro';
 
 interface Props extends HTMLAttributes<'nav'> {
-  maxWidth?: string;
-  paddingInline?: string;
-  backgroundColor?: string;
-  foregroundColor?: string;
   hoverColor: string;
   activeLink: LinkKey;
-  hideIcons?: boolean;
 }
 
-const {
-  maxWidth,
-  paddingInline,
-  backgroundColor,
-  foregroundColor,
-  hoverColor,
-  activeLink,
-  hideIcons,
-} = Astro.props;
+const { hoverColor, activeLink, ...props } = Astro.props;
 ---
 
-<div class="container">
-  <nav aria-label="External links">
-    <ul>
-      {
-        links.map((link) => {
-          const isActive = link.key === activeLink;
+<nav aria-label="External links" {...props}>
+  <ul>
+    {
+      links.map((link) => {
+        const isActive = link.key === activeLink;
 
-          return (
-            <li>
-              <a
-                href={link.href}
-                aria-current={isActive ? 'page' : undefined}
-                class:list={[
-                  !hideIcons && 'icon-link',
-                  isActive && 'active-link',
-                ]}
-              >
-                {!hideIcons && <Icon name={link.iconName} />}
-                {link.name}
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </nav>
-</div>
+        return (
+          <li>
+            <a
+              href={link.href}
+              aria-current={isActive ? 'page' : undefined}
+              class:list={[
+                'external-link',
+                isActive && 'external-link--active',
+              ]}
+            >
+              <Icon name={link.iconName} />
+              {link.name}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
 
-<style
-  define:vars={{
-    'max-width': maxWidth,
-    'padding-inline': paddingInline,
-    'background-color': backgroundColor,
-    'foreground-color': foregroundColor,
-    'hover-color': hoverColor,
-  }}
->
-  .container {
+<style define:vars={{ 'hover-color': hoverColor }}>
+  nav {
     padding-block: 1.5em;
-    padding-inline: var(--padding-inline);
     font-size: 16px;
-    color: var(--foreground-color);
-    background-color: var(--background-color);
 
     @media (width >= 1024px) {
       font-size: 18px;
     }
   }
 
-  .icon-link {
-    display: inline-flex;
-    column-gap: 0.5em;
-    align-items: center;
-  }
-
-  .active-link {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
-  }
-
-  nav {
-    max-width: var(--max-width);
-    margin-inline: auto;
-  }
-
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
     gap: 1.5em;
-    padding: 0;
     line-height: 1;
-    list-style-type: none;
 
     @media (width >= 768px) {
       display: flex;
@@ -112,8 +67,10 @@ const {
     }
   }
 
-  a {
-    display: inline-block;
+  .external-link {
+    display: inline-flex;
+    column-gap: 0.5em;
+    align-items: center;
     color: currentcolor;
     text-decoration: none;
     text-wrap: nowrap;
@@ -122,7 +79,13 @@ const {
       color: var(--hover-color);
     }
 
-    svg {
+    &--active {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    :global(svg) {
       flex: none;
       width: 1.2em;
       height: 1.2em;
