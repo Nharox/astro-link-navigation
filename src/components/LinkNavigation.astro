@@ -24,10 +24,7 @@ const { hoverColor, activeLink, ...props } = Astro.props;
             <a
               href={link.href}
               aria-current={isActive ? 'page' : undefined}
-              class:list={[
-                'external-link',
-                isActive && 'external-link--active',
-              ]}
+              class:list={['external-link', isActive && 'active-link']}
             >
               <Icon name={link.iconName} />
               {link.name}
@@ -79,16 +76,16 @@ const { hoverColor, activeLink, ...props } = Astro.props;
       color: var(--hover-color);
     }
 
-    &--active {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
-    }
-
     :global(svg) {
       flex: none;
       width: 1.2em;
       height: 1.2em;
     }
+  }
+
+  .active-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
   }
 </style>
