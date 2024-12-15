@@ -3,6 +3,7 @@ import type { IconName } from '../models/icon-name';
 
 import BlueskyIcon from '../icons/BlueskyIcon.astro';
 import CodeIcon from '../icons/CodeIcon.astro';
+import CopyrightIcon from '../icons/CopyrightIcon.astro';
 import JoystickIcon from '../icons/JoystickIcon.astro';
 import MastodonIcon from '../icons/MastodonIcon.astro';
 import MusicIcon from '../icons/MusicIcon.astro';
@@ -17,6 +18,7 @@ const { name } = Astro.props;
 
 {name === 'bluesky' && <BlueskyIcon />}
 {name === 'code' && <CodeIcon />}
+{name === 'copyright' && <CopyrightIcon />}
 {name === 'joystick' && <JoystickIcon />}
 {name === 'mastodon' && <MastodonIcon />}
 {name === 'music' && <MusicIcon />}

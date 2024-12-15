@@ -4,6 +4,7 @@ import type { LinkKey } from '../models/link-key';
 
 import { links, socialLinks } from '../data/links';
 import Icon from './Icon.astro';
+import PeoplePledge from './PeoplePledge.astro';
 
 interface Props extends HTMLAttributes<'nav'> {
   hoverColor: string;
@@ -11,55 +12,56 @@ interface Props extends HTMLAttributes<'nav'> {
 }
 
 const { hoverColor, activeLink, ...props } = Astro.props;
+const currentYear = new Date().getFullYear();
 ---
 
-<nav aria-label="External links" {...props}>
-  <ul>
-    {
-      links.map((link) => {
-        const isActive = link.key === activeLink;
+<div class="link-navigation">
+  <nav aria-label="External links" {...props}>
+    <ul>
+      {
+        links.map((link) => {
+          const isActive = link.key === activeLink;
 
-        return (
+          return (
+            <li>
+              <a
+                href={link.href}
+                aria-current={isActive ? 'page' : undefined}
+                class:list={['external-link', isActive && 'active-link']}
+              >
+                <Icon name={link.iconName} />
+                {link.name}
+              </a>
+            </li>
+          );
+        })
+      }
+      {
+        socialLinks.map((link) => (
           <li>
-            <a
-              href={link.href}
-              aria-current={isActive ? 'page' : undefined}
-              class:list={['external-link', isActive && 'active-link']}
-            >
+            <a href={link.href} class="external-link">
               <Icon name={link.iconName} />
               {link.name}
             </a>
           </li>
-        );
-      })
-    }
-    {
-      socialLinks.map((link) => (
-        <li>
-          <a href={link.href} class="external-link">
-            <Icon name={link.iconName} />
-            {link.name}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</nav>
+        ))
+      }
+    </ul>
+  </nav>
+  <div class="lower-wrapper">
+    <div class="copyright">
+      <Icon name="copyright" />
+      <p>{currentYear} Dominik Gallitzendörfer</p>
+    </div>
+    <PeoplePledge />
+  </div>
+</div>
 
 <style define:vars={{ 'hover-color': hoverColor }}>
-  nav {
-    padding-block: 1.5em;
-    font-size: 16px;
-
-    @media (width >= 1024px) {
-      font-size: 18px;
-    }
-  }
-
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
-    gap: 1.5em;
+    gap: var(--spacing);
     line-height: 1;
 
     @media (width >= 850px) {
@@ -74,22 +76,45 @@ const { hoverColor, activeLink, ...props } = Astro.props;
     }
   }
 
-  .external-link {
+  .link-navigation {
+    --spacing: 1.5em;
+
+    padding-block: var(--spacing);
+    font-size: 16px;
+
+    @media (width >= 1024px) {
+      font-size: 18px;
+    }
+  }
+
+  .lower-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block-start: var(--spacing);
+    padding-block-start: var(--spacing);
+    border-top: 1px solid color-mix(in srgb, currentcolor 20%, transparent);
+  }
+
+  :is(.external-link, .copyright) {
     display: inline-flex;
     column-gap: 0.5em;
     align-items: center;
+
+    :global(svg) {
+      flex: none;
+      width: 1.2em;
+      height: 1.2em;
+    }
+  }
+
+  .external-link {
     color: currentcolor;
     text-decoration: none;
     text-wrap: nowrap;
 
     &:hover {
       color: var(--hover-color);
-    }
-
-    :global(svg) {
-      flex: none;
-      width: 1.2em;
-      height: 1.2em;
     }
   }
 

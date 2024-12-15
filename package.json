@@ -1,7 +1,7 @@
 {
   "name": "@nharox/astro-link-navigation",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Dominik Gallitzendörfer <hello@nharox.com>",
   "main": "./src/components/index.ts",
   "repository": "https://github.com/nharox/astro-link-navigation",
