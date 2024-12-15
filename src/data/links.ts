@@ -33,6 +33,9 @@ export const links: Link[] = [
     name: 'Favourite Music',
     iconName: 'music',
   },
+];
+
+export const socialLinks: Link[] = [
   {
     href: 'https://bsky.app/profile/nharox.com',
     name: 'Bluesky',

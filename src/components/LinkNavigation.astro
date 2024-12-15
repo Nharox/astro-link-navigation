@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from 'astro/types';
 import type { LinkKey } from '../models/link-key';
 
-import { links } from '../data/links';
+import { links, socialLinks } from '../data/links';
 import Icon from './Icon.astro';
 
 interface Props extends HTMLAttributes<'nav'> {
@@ -33,6 +33,16 @@ const { hoverColor, activeLink, ...props } = Astro.props;
         );
       })
     }
+    {
+      socialLinks.map((link) => (
+        <li>
+          <a href={link.href} class="external-link">
+            <Icon name={link.iconName} />
+            {link.name}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 
@@ -52,14 +62,14 @@ const { hoverColor, activeLink, ...props } = Astro.props;
     gap: 1.5em;
     line-height: 1;
 
-    @media (width >= 768px) {
+    @media (width >= 850px) {
       display: flex;
       column-gap: 2em;
     }
   }
 
   li:nth-last-child(2) {
-    @media (width >= 768px) {
+    @media (width >= 850px) {
       margin-left: auto;
     }
   }
