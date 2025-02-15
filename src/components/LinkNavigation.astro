@@ -17,7 +17,7 @@ const currentYear = new Date().getFullYear();
 
 <div class="link-navigation">
   <nav aria-label="External links" {...props}>
-    <ul>
+    <ul role="list">
       {
         links.map((link) => {
           const isActive = link.key === activeLink;
