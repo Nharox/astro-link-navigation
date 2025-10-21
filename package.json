@@ -1,7 +1,7 @@
 {
   "name": "@nharox/astro-link-navigation",
   "type": "module",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "author": "Dominik Gallitzendörfer <hello@nharox.com>",
   "main": "./src/components/index.ts",
   "repository": "https://github.com/nharox/astro-link-navigation",
@@ -16,15 +16,15 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write \"src/**/*.{astro,ts}\"",
+    "prettier": "prettier --write \"src/**/*.{astro,ts}\"",
     "stylelint": "stylelint --fix \"src/**/*.{astro,css}\"",
     "publish": "npm publish"
   },
   "dependencies": {
-    "astro": "^5.7.13"
+    "astro": "^5.14.1"
   },
   "devDependencies": {
-    "@nharox/astro-prettier-config": "^2.0.0",
-    "@nharox/astro-stylelint-config": "^2.1.2"
+    "@nharox/astro-prettier-config": "^2.1.0",
+    "@nharox/astro-stylelint-config": "^2.2.0"
   }
 }
