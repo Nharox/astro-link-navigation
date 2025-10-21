@@ -1,14 +1,14 @@
 {
   "name": "@nharox/astro-link-navigation",
   "type": "module",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "author": "Dominik Gallitzendörfer <hello@nharox.com>",
   "main": "./src/components/index.ts",
   "repository": "https://github.com/nharox/astro-link-navigation",
   "license": "MIT",
   "prettier": "@nharox/astro-prettier-config",
   "stylelint": {
-    "extends": "@nharox/astro-stylelint-config"
+    "extends": "@nharox/stylelint-config"
   },
   "scripts": {
     "dev": "astro dev",
@@ -25,6 +25,6 @@
   },
   "devDependencies": {
     "@nharox/astro-prettier-config": "^2.1.0",
-    "@nharox/astro-stylelint-config": "^2.2.0"
+    "@nharox/stylelint-config": "^1.0.0"
   }
 }
